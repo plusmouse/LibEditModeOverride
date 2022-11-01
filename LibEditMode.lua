@@ -3,10 +3,8 @@
 local lib = LibStub:NewLibrary("LibEditMode-1-0", 1)
 
 local frame = CreateFrame("Frame")
-local knownFrames = {
-  ChatFrame1,
-}
-local frameMap = {}
+
+local FRAME_ERROR = "This frame isn't used by edit mode"
 
 local layoutInfo
 
@@ -19,26 +17,39 @@ local function GetSystemByID(systemID, systemIndex)
   end
 end
 
---[[local function WriteOption(layoutInfo, system, setting, value)
-  -- Get and set the setting by looking for the right setting id
-  local allSettingsUnorg = actualSystem.settings
-  for _, j in ipairs(allSettingsUnorg) do
-    if j.setting == setting then
-      j.value = value
-      return
-    end
-  end
-end]]
-
--- frame
-function lib:ReanchorFrame(frame, ...)
+local function GetSystemByFrame(frame)
   assert(frame and type(frame) == "table" and frame.IsObjectType and frame:IsObjectType("Frame"), "Frame required")
+
   local systemID = frame.system
   local systemIndex = frame.systemIndex
 
-  assert(systemID, "This frame isn't used by edit mode")
+  return GetSystemByID(systemID, systemIndex)
+end
 
-  local system = GetSystemByID(systemID, systemIndex)
+function lib:SetGlobalSetting(setting, value)
+  C_EditMode.SetAccountSetting(setting, value)
+end
+
+-- Set an option found in the Enum.EditMode enumerations
+function lib:SetFrameSetting(frame, setting, value)
+  local system = GetSystemByFrame(frame)
+
+  assert(system, FRAME_ERROR)
+
+  for _, item in pairs(system.settings) do
+    if item.setting == setting then
+      item.value = value
+      return true
+    end
+  end
+  return false
+end
+
+function lib:ReanchorFrame(frame, ...)
+  local system = GetSystemByFrame(frame)
+
+  assert(system, FRAME_ERROR)
+
   system.isInDefaultPosition = false
 
   frame:ClearAllPoints()
