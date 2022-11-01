@@ -9,7 +9,6 @@ local frameMap = {}
 local layoutInfo
 
 local function GetSystemByID(systemID)
-  local allSystems = 
   -- Get the system by checking each one for the right system id
   for _, system in pairs(layoutInfo.layouts[layoutInfo.activeLayout].systems) do
     if system.system == systemID then
@@ -43,14 +42,19 @@ function lib:ReanchorFrame(frame, ...)
   frame:SetPoint(...)
   local anchorInfo = system.anchorInfo
 
-  anchorInfo.point, anchorInfo.relativeTo, anchorInfo.relativePoint, anchorInfo.xOffset, anchorInfo.yOffset = frame:GetPoint(1)
+  anchorInfo.point, anchorInfo.relativeTo, anchorInfo.relativePoint, anchorInfo.offsetX, anchorInfo.offsetY = frame:GetPoint(1)
+  anchorInfo.relativeTo = anchorInfo.relativeTo:GetName()
 end
 
-function lib:InitializeLayouts()
+function lib:AreLayoutsLoaded()
+  return layoutInfo ~= nil
+end
+
+function lib:LoadLayouts()
   layoutInfo = C_EditMode.GetLayouts()
   local tmp = EditModePresetLayoutManager:GetCopyOfPresetLayouts()
   tAppendAll(tmp, layoutInfo.layouts);
-  layouts.layouts = tmp
+  layoutInfo.layouts = tmp
 end
 
 function lib:ApplyChanges()
