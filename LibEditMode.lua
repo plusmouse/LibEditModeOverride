@@ -1,3 +1,5 @@
+-- Copyright 2022 plusmouse. Licensed under terms found in LICENSE file.
+
 local lib = LibStub:NewLibrary("LibEditMode-1-0", 1)
 
 local frame = CreateFrame("Frame")
