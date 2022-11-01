@@ -8,16 +8,16 @@ local frameMap = {}
 
 local layoutInfo
 
-local function GetSystemByID(systemID)
+local function GetSystemByID(systemID, systemIndex)
   -- Get the system by checking each one for the right system id
   for _, system in pairs(layoutInfo.layouts[layoutInfo.activeLayout].systems) do
-    if system.system == systemID then
+    if system.system == systemID and system.systemIndex == systemIndex then
       return system
     end
   end
 end
 
-local function WriteOption(layoutInfo, system, setting, value)
+--[[local function WriteOption(layoutInfo, system, setting, value)
   -- Get and set the setting by looking for the right setting id
   local allSettingsUnorg = actualSystem.settings
   for _, j in ipairs(allSettingsUnorg) do
@@ -26,7 +26,7 @@ local function WriteOption(layoutInfo, system, setting, value)
       return
     end
   end
-end
+end]]
 
 -- frame
 function lib:ReanchorFrame(frame, ...)
@@ -36,7 +36,8 @@ function lib:ReanchorFrame(frame, ...)
 
   assert(systemID, "This frame isn't used by edit mode")
 
-  local system = GetSystemByID(systemID)
+  local system = GetSystemByID(systemID, systemIndex)
+  system.isInDefaultPosition = false
 
   frame:ClearAllPoints()
   frame:SetPoint(...)
