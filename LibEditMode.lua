@@ -61,6 +61,7 @@ function lib:LoadLayouts()
 end
 
 function lib:ApplyChanges()
+  assert(not InCombatLockdown(), "Cannot move frames in combat")
   C_EditMode.SaveLayouts(layoutInfo)
 
   ShowUIPanel(EditModeManagerFrame)
