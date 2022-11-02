@@ -9,6 +9,7 @@ local LOAD_ERROR = "You need to call LibEditMode:LoadLayouts first"
 local EDIT_ERROR = "Active layout is not editable"
 
 local layoutInfo
+local reconciledLayouts = false
 
 local function GetSystemByID(systemID, systemIndex)
   -- Get the system by checking each one for the right system id
@@ -92,6 +93,17 @@ end
 
 function lib:LoadLayouts()
   layoutInfo = C_EditMode.GetLayouts()
+
+  if not reconciledLayouts then
+    local anyChanged = false
+    for _, layout in ipairs(layoutInfo.layouts) do
+      anyChanged = anyChanged or EditModeManagerFrame:ReconcileWithModern(layout)
+    end
+    if not anyChanged then
+      reconciledLayouts = true
+    end
+  end
+
   local tmp = EditModePresetLayoutManager:GetCopyOfPresetLayouts()
   tAppendAll(tmp, layoutInfo.layouts);
   layoutInfo.layouts = tmp
@@ -100,6 +112,7 @@ end
 function lib:SaveOnly()
   assert(layoutInfo, LOAD_ERROR)
   C_EditMode.SaveLayouts(layoutInfo)
+  reconciledLayouts = true -- Would have updated for new/old systems in LoadLayouts
 end
 
 function lib:ApplyChanges()
