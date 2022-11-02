@@ -1,7 +1,7 @@
 # LibEditMode
 
 Modify anchors and settings of frames controlled by edit mode _without_
-triggering taint issues. Only works outside of combat.
+triggering taint issues or requiring a `/reload`.
 
 ```lua
 local LibEditMode = LibStub("LibEditMode-1-0")
