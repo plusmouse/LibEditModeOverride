@@ -1,8 +1,8 @@
 -- Copyright 2022 plusmouse. Licensed under terms found in LICENSE file.
 
-local lib = LibStub:NewLibrary("LibEditMode-1-0", 1)
+local lib = LibStub:NewLibrary("LibEditMode-1-0", 2)
 
-local frame = CreateFrame("Frame")
+local pointGetter = CreateFrame("Frame", nil, UIParent)
 
 local FRAME_ERROR = "This frame isn't used by edit mode"
 local LOAD_ERROR = "You need to call LibEditMode:LoadLayouts first"
@@ -79,11 +79,11 @@ function lib:ReanchorFrame(frame, ...)
 
   system.isInDefaultPosition = false
 
-  frame:ClearAllPoints()
-  frame:SetPoint(...)
+  pointGetter:ClearAllPoints()
+  pointGetter:SetPoint(...)
   local anchorInfo = system.anchorInfo
 
-  anchorInfo.point, anchorInfo.relativeTo, anchorInfo.relativePoint, anchorInfo.offsetX, anchorInfo.offsetY = frame:GetPoint(1)
+  anchorInfo.point, anchorInfo.relativeTo, anchorInfo.relativePoint, anchorInfo.offsetX, anchorInfo.offsetY = pointGetter:GetPoint(1)
   anchorInfo.relativeTo = anchorInfo.relativeTo:GetName()
 end
 
