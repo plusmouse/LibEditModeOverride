@@ -53,6 +53,11 @@ Set an edit mode account-wide setting. This is just an alias for
 
 Does this frame have edit mode settings available?
 
+### `LibEditMode:GetFrameSetting(frame, setting)`
+
+Get a specific an edit mode setting on an edit mode managed frame. Use the
+enumerations found in the Blizzard Lua dumps for the setting parameter.
+
 ## Layout management
 
 ### `LibEditMode:AddLayout(layoutName)`
