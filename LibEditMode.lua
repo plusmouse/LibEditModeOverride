@@ -102,10 +102,21 @@ function lib:SetFrameSetting(frame, setting, value)
   for _, item in pairs(system.settings) do
     if item.setting == setting then
       item.value = value
-      return true
     end
   end
-  return false
+end
+
+function lib:GetFrameSetting(frame, setting)
+  local system = GetSystemByFrame(frame)
+
+  assert(system, FRAME_ERROR)
+
+  for _, item in pairs(system.settings) do
+    if item.setting == setting then
+      return item.value
+    end
+  end
+  return nil
 end
 
 function lib:ReanchorFrame(frame, ...)
