@@ -1,6 +1,6 @@
 -- Copyright 2022 plusmouse. Licensed under terms found in LICENSE file.
 
-local lib = LibStub:NewLibrary("LibEditMode-1.0", 5)
+local lib = LibStub:NewLibrary("LibEditMode-1.0", 6)
 
 local pointGetter = CreateFrame("Frame", nil, UIParent)
 
@@ -59,6 +59,16 @@ end
 
 function lib:SetGlobalSetting(setting, value)
   C_EditMode.SetAccountSetting(setting, value)
+end
+
+function lib:GetGlobalSetting(setting)
+  local currentSettings = C_EditMode.GetAccountSettings()
+
+  for _, s in ipairs(currentSettings) do
+    if s.setting == setting then
+      return s.value
+    end
+  end
 end
 
 function lib:HasEditModeSettings(frame)
