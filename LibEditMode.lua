@@ -1,6 +1,6 @@
 -- Copyright 2022 plusmouse. Licensed under terms found in LICENSE file.
 
-local lib = LibStub:NewLibrary("LibEditMode-1.0", 6)
+local lib = LibStub:NewLibrary("LibEditMode-1.0", 7)
 
 local pointGetter = CreateFrame("Frame", nil, UIParent)
 
@@ -97,7 +97,7 @@ function lib:SetFrameSetting(frame, setting, value)
     elseif restrictions.type == Enum.EditModeSettingDisplayType.Slider then
       if restrictions.stepSize then
         min = 0
-        max = (restrictions.maxValue - restrictions.minValue) / restrictions.stepSize
+        max = restrictions.maxValue - restrictions.minValue
       else
         min = restrictions.minValue
         max = restrictions.maxValue
