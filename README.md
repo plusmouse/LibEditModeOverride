@@ -42,7 +42,8 @@ same parameters as a `frame:SetPoint(...)` call for the anchor.
 ### `LibEditMode:SetFrameSetting(frame, setting, value)`
 
 Set an edit mode setting on an edit mode managed frame. Use the enumerations
-found in the Blizzard Lua dumps for the setting parameter.
+found in the Blizzard Lua dumps for the setting parameter. See
+https://github.com/Gethe/wow-ui-source/blob/live/Interface/FrameXML/EditModePresetLayouts.lua
 
 ### `LibEditMode:SetGlobalSetting(setting, value)`
 
@@ -59,7 +60,7 @@ Does this frame have edit mode settings available?
 Get the value of a specific edit mode setting on an edit mode managed frame.
 Use the enumerations found in the Blizzard Lua dumps for the setting parameter.
 
-### `LibEditMode:GetGlobalSetting(setting, value)`
+### `LibEditMode:GetGlobalSetting(setting)`
 
 Get the value of a specific edit mode account-wide setting. This setting won't
 affect the UI outside of edit mode.
