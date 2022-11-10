@@ -1,11 +1,11 @@
 -- Copyright 2022 plusmouse. Licensed under terms found in LICENSE file.
 
-local lib = LibStub:NewLibrary("LibEditMode-1.0", 7)
+local lib = LibStub:NewLibrary("LibEditModeOverride-1.0", 7)
 
 local pointGetter = CreateFrame("Frame", nil, UIParent)
 
 local FRAME_ERROR = "This frame isn't used by edit mode"
-local LOAD_ERROR = "You need to call LibEditMode:LoadLayouts first"
+local LOAD_ERROR = "You need to call LibEditModeOverride:LoadLayouts first"
 local EDIT_ERROR = "Active layout is not editable"
 
 local layoutInfo
