@@ -1,6 +1,6 @@
 -- Copyright 2022 plusmouse. Licensed under terms found in LICENSE file.
 
-local lib = LibStub:NewLibrary("LibEditModeOverride-1.0", 8)
+local lib = LibStub:NewLibrary("LibEditModeOverride-1.0", 9)
 
 local pointGetter = CreateFrame("Frame", nil, UIParent)
 
