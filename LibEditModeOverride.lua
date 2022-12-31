@@ -2,6 +2,8 @@
 
 local lib = LibStub:NewLibrary("LibEditModeOverride-1.0", 9)
 
+if not lib then return end
+
 local pointGetter = CreateFrame("Frame", nil, UIParent)
 
 local FRAME_ERROR = "This frame isn't used by edit mode"
