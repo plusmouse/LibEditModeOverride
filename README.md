@@ -13,6 +13,10 @@ LibEditModeOverride:ApplyChanges()
 # Usage
 
 ## Initialization and saving
+### `LibEditModeOverride:IsReady()`
+Returns `true` once the Blizzard APIs have loaded the edit mode state. This
+happens on `EDIT_MODE_LAYOUTS_UPDATED`.
+
 ### `LibEditModeOverride:LoadLayouts()`
 
 Required to call before using any other functions in this library. Queries and saves from
