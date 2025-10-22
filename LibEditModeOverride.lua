@@ -107,8 +107,8 @@ function lib:SetFrameSetting(frame, setting, value)
       max = 1
     elseif restrictions.type == Enum.EditModeSettingDisplayType.Slider then
       if restrictions.stepSize then
-        min = 0
-        max = restrictions.maxValue - restrictions.minValue
+        min = restrictions.minValue
+        max = restrictions.maxValue
       else
         min = restrictions.minValue
         max = restrictions.maxValue
