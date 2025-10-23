@@ -107,8 +107,13 @@ function lib:SetFrameSetting(frame, setting, value)
       max = 1
     elseif restrictions.type == Enum.EditModeSettingDisplayType.Slider then
       if restrictions.stepSize then
-        min = restrictions.minValue
-        max = restrictions.maxValue
+        if frame:GetName():match("CooldownViewer") then
+          min = restrictions.minValue
+          max = restrictions.maxValue
+        else
+          min = 0
+          max = restrictions.maxValue - restrictions.minValue
+        end
       else
         min = restrictions.minValue
         max = restrictions.maxValue
