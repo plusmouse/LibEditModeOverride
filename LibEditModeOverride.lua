@@ -112,10 +112,10 @@ function lib:SetFrameSetting(frame, setting, value)
       error("Internal Error: Unknown setting restrictions")
     end
     assert(min <= value and value <= max, string.format("Value %s invalid for this setting: min %s, max %s", value, min, max))
-  end
 
-  if restrictions.ConvertValue then
-    value = restrictions:ConvertValue(value)
+    if restrictions.ConvertValue then
+      value = restrictions:ConvertValue(value)
+    end
   end
 
   for _, item in pairs(system.settings) do
