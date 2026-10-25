@@ -1,6 +1,6 @@
 -- Copyright 2022-2026 plusmouse. Licensed under terms found in LICENSE file.
 
-local lib = LibStub:NewLibrary("LibEditModeOverride-1.0", 10)
+local lib = LibStub:NewLibrary("LibEditModeOverride-1.0", 11)
 
 if not lib then return end
 
